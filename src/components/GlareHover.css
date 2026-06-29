@@ -1,0 +1,44 @@
+/* GlareHover.css - Premium dark-themed glare hover effect card container */
+.glare-hover-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px; /* rounded-xl */
+  background-color: #000000; /* 默认背景纯黑 */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* 默认边框深灰色 */
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+}
+
+.glare-hover-container:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9);
+}
+
+/* 伪元素：悬停时光斑平滑扫过的动效 */
+.glare-hover-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05) 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 70%,
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glare-hover-container:hover::before {
+  left: 150%;
+  transition: left 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
